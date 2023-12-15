@@ -38,7 +38,7 @@ int execute_instruction(char *opcode, stack_t **stack, unsigned int line_number)
  * push - pushes data to the top of the stack.
  * @stack: pointer to the head 
  * @line_number: line number in file.
- * Return: void
+ * Return void
  */
 void push(stack_t **stack, __attribute__((unused)) unsigned int line_number)
 {

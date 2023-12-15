@@ -14,20 +14,17 @@ int main(int argc, char *argv[])
 	stack_t *stack = NULL;
 	unsigned int line_number;
 	const char *filename;
-	size_t filename_lenght;
 	FILE *file;
 
 	line_number = 0;
-	filename = argv[1];
-	filename_lenght = strlen(filename);
-
+	
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-
-	if (strcmp(filename + filename_lenght - 2, ".m") != 0)
+	filename = argv[1];
+	if (filename[0] == '(')
 	{
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
@@ -42,13 +39,17 @@ int main(int argc, char *argv[])
 
 	while (fgets(buffer, sizeof(buffer), file) != NULL)
 	{
-		memset(opcode, '\0', sizeof(opcode));
+		memset(opcode, '\0', sizeof(opcode));		
 		parse_buffer(buffer, opcode, parameters, &line_number, &data);
 		if (strcmp(opcode, "") == 0)
+	{
 			continue;
-		if (execute_instruction(opcode, &stack, line_number) != EXIT_SUCCESS)
-			return(EXIT_FAILURE);
 	}
+		if (execute_instruction(opcode, &stack, line_number) != EXIT_SUCCESS)
+			return (EXIT_FAILURE);
+	}
+	pop_all(stack);
+
 	fclose(file);
 	return (EXIT_SUCCESS);
 

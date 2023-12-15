@@ -20,7 +20,6 @@ int count_stacks(stack_t **stack)
 		temp = temp->next;
 		count++;
 	}
-	printf("count is %d elements\n", count);
 	return (count);
 }
 

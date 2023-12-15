@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <fcntl.h>
+#include <ctype.h>
 #include <string.h>
 
 /**
@@ -40,6 +40,8 @@ typedef struct instruction_s
 
 extern int data;
 
+void pop_all(stack_t *stack);
+int valid_integer(const char *str);
 int count_stacks(stack_t **stack);
 void parse_buffer(char *buffer, char *opcode, char *parameters, unsigned int *line_number, int *data);
 int execute_instruction(char *opcode, stack_t **stack, unsigned int line_number);
