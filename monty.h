@@ -40,9 +40,7 @@ typedef struct instruction_s
 
 extern int data;
 
-int _accept(char **buffer, size_t *bytes_read);
-char **_tokenize(char *str, char *delimiter);
-int _token_count(char *str, char *delimiter);
+int count_stacks(stack_t **stack);
 void parse_buffer(char *buffer, char *opcode, char *parameters, unsigned int *line_number, int *data);
 int execute_instruction(char *opcode, stack_t **stack, unsigned int line_number);
 
@@ -51,5 +49,6 @@ void push(stack_t **stack, unsigned int line_number);
 void pop(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
+void swap(stack_t **stack, unsigned int line_number);
 
 #endif
