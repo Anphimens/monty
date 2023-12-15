@@ -12,7 +12,10 @@ instruction_t instruction_list[] = {
         {"pop", pop},
         {"pall", pall},
 	{"pint", pint},
-	{"pop", pop}
+	{"swap", swap},
+	{"add", add},
+	{"nop", nop},
+	{"sub", sub}
 };
 
 int execute_instruction(char *opcode, stack_t **stack, unsigned int line_number)
