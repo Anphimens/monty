@@ -13,9 +13,9 @@ instruction_t instruction_list[] = {
         {"pall", pall},
 	{"pint", pint},
 	{"swap", swap},
+	{"sub", sub},
 	{"add", add},
-	{"nop", nop},
-	{"sub", sub}
+	{"nop", nop}
 };
 
 int execute_instruction(char *opcode, stack_t **stack, unsigned int line_number)
@@ -27,11 +27,11 @@ int execute_instruction(char *opcode, stack_t **stack, unsigned int line_number)
 		if (strcmp(opcode, instruction_list[i].opcode) == 0)
 		{
 			instruction_list[i].f(stack, line_number);
-			exit(EXIT_SUCCESS);
+			return(EXIT_SUCCESS);
 		}
 	}
 	fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opcode);
-	return (EXIT_FAILURE);
+	exit(EXIT_FAILURE);
 }
 
 /**
@@ -116,12 +116,12 @@ void pall(stack_t **stack, __attribute__((unused)) unsigned int line_number)
 		return;
 	current = (*stack);
 
-	while (current->prev != NULL)
-		current = current->prev;
+	while (current->next != NULL) 
+		current = current->next;
 	while (current != NULL)
 	{
 		printf("%d\n", current->n);
-		current = current->next;
+		current = current->prev;
 	}
 }
 
