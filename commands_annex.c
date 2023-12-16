@@ -9,7 +9,7 @@ int count_stacks(stack_t **stack)
 	stack_t *temp;
 	int count;
 
-	count = 1;
+	count = 0;
 	if ((*stack) == NULL)
 		return (0);
 	temp = (*stack);
