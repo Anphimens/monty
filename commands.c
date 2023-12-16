@@ -84,7 +84,7 @@ void pop(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	temp = (*stack);
-	if (temp->next == NULL)
+	if (temp->prev == NULL)
 	{
 		free(temp);
 		(*stack) = NULL;
@@ -92,15 +92,15 @@ void pop(stack_t **stack, unsigned int line_number)
 	}
 
 	previous = NULL;
-	while (temp->next != NULL)
+	while (temp->prev != NULL)
 	{
 		previous = temp;
-		temp = temp->next;
+		temp = temp->prev;
 	}
 
 	if (previous != NULL)
 	{
-		previous->next = NULL;
+		previous->prev = NULL;
 	}
 	free(temp);
 }
