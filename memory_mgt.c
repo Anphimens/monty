@@ -6,6 +6,8 @@
  */
 void pop_all(stack_t *stack)
 {
-	while(stack != NULL)
+	while (stack != NULL)
+	{
 		pop(&stack, 0);
+	}
 }
