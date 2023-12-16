@@ -38,6 +38,10 @@ void swap(stack_t **stack, unsigned int line_number)
 		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
+	while ((*stack)->next != NULL)
+	{
+		(*stack) = (*stack)->next;
+	}
 	temp = (*stack)->n;
 	(*stack)->n = (*stack)->prev->n;
 	(*stack)->prev->n = temp;
@@ -59,15 +63,14 @@ void add(stack_t **stack, unsigned int line_number)
 	exit(EXIT_FAILURE);
 	}
 	temp = (*stack);
-	while (temp->prev != NULL)
-		temp = temp->prev;
-	temp_data = (temp->n) + (temp->next->n);
-	temp->next->n = temp_data;
-
-	(*stack) = temp->next;
-	
+	while (temp->next != NULL)
+		temp = temp->next;
+	temp_data = (temp->n) + (temp->prev->n);
+	temp->prev->n = temp_data;
+	(*stack) = temp->prev;
 	if (temp->next != NULL)
-		temp->next->prev = NULL;
+		temp->next->prev = temp->prev;
+	temp->prev->next = temp->next;
 	free(temp);
 }
 /**
@@ -82,30 +85,31 @@ void nop(stack_t **stack, unsigned int line_number)
 	(void) line_number;
 }
 /**
- * nop - does virtually nothing
+ * sub - subtract the top element of the stack
  * @stack: pointer to the head
  * @line_number: line number in file.
  * Return: void
  */
 void sub(stack_t **stack, unsigned int line_number)
 {
-        int temp_data;
-        stack_t *temp;
+	int temp_data;
+	stack_t *temp;
 
-        if (count_stacks(stack) < 2)
-        {
-        fprintf(stderr, "L%d: can't sub, stack too short\n", line_number);
-        exit(EXIT_FAILURE);
-        }
-        temp = (*stack);
-        while (temp->prev != NULL)
-                temp = temp->prev;
-        temp_data = (temp->n) - (temp->next->n);
-        temp->next->n = temp_data;
-
-        (*stack) = temp->next;
-
-        if (temp->next != NULL)
-                temp->next->prev = NULL;
-        free(temp);
+	if (count_stacks(stack) < 2)
+	{
+		fprintf(stderr, "L%d: can't sub, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	temp = (*stack);
+	while (temp->next != NULL)
+	{
+		temp = temp->next;
+	}
+	temp_data = (temp->prev->n) - (temp->n);
+	temp->prev->n = temp_data;
+	(*stack) = temp->prev;
+	if (temp->next != NULL)
+		temp->next->prev = temp->prev;
+	temp->prev->next = temp->next;
+	free(temp);
 }
