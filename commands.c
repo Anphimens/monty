@@ -136,12 +136,15 @@ void pall(stack_t **stack, __attribute__((unused)) unsigned int line_number)
  */
 void pint(stack_t **stack, unsigned int line_number)
 {
+	stack_t *current;
 	if ((*stack) == NULL)
 	{
 		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	if ((*stack)->next != NULL)
-		(*stack) = (*stack)->next;
-	printf("%d\n", (*stack)->n);
+	current = (*stack);
+
+	if (current->next != NULL)
+		current = current->next;
+	printf("%d\n", current->n);
 }
