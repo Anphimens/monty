@@ -36,12 +36,15 @@ int main(int argc, char *argv[])
 	}
 	while (fgets(buffer, sizeof(buffer), file) != NULL)
 	{
+		line_number++;
 		memset(opcode, '\0', sizeof(opcode));
+		memset(opcode, '\0', sizeof(parameters));
 		parse_buffer(buffer, opcode, parameters, &line_number, &data);
 		if (strcmp(opcode, "") == 0)
-	{
+		{
+/*			line_number++;*/
 			continue;
-	}
+		}
 		if (execute_instruction(opcode, &stack, line_number) != EXIT_SUCCESS)
 			return (EXIT_FAILURE);
 	}

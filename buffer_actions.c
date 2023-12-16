@@ -12,16 +12,15 @@
 void parse_buffer(char *buffer, char *opcode, char *parameters,
 		unsigned int *line_number, int *data)
 {
-	sscanf(buffer, "%s %[^\n]", opcode, parameters);
-	if ((strcmp(opcode, "push") == 0) &&
-			(valid_integer(parameters) == EXIT_FAILURE))
+	sscanf(buffer, "%50s %200s", opcode, parameters);
+/*	(*line_number)++;*/
+	if ((strcmp(opcode, "push") == 0) && (valid_integer(parameters) == EXIT_FAILURE))
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", *line_number);
 		exit(EXIT_FAILURE);
 	}
 
 	(*data) = atoi(parameters);
-	(*line_number)++;
 }
 /**
  * valid_integer - checks whether contents of parameter is valid
@@ -32,10 +31,12 @@ int valid_integer(const char *str)
 {
 	size_t i;
 
+	if (strcmp(str, "") == 0)
+		return (EXIT_FAILURE);
 	if (!isdigit(str[0]) && (str[0] != '-' || !isdigit(str[1])))
 		return (EXIT_FAILURE);
 	for (i = 1; str[i] != '\0'; ++i)
-		if (!isdigit(str[i]))
+		if (!isdigit(str[i]) && str[i] != ' ')
 			return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
