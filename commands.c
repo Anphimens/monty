@@ -121,8 +121,16 @@ void pall(stack_t **stack, __attribute__((unused)) unsigned int line_number)
 	}
 	while (current != NULL)
 	{
-		printf("%d\n", current->n);
-		current = current->prev;
+		if (current->prev == NULL)
+		{
+			printf("%d\n", current->n);
+			return;
+		}
+		else 
+		{
+			printf("%d\n", current->n);
+			current = current->prev;
+		}
 	}
 }
 
