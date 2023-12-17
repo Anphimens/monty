@@ -1,24 +1,17 @@
-push 1 This should not be taken into account
-# Comment
+push 1
 push 2
 push 3
-       # Another comment
-#
-#Above is an empty comment
-pint
-nop
 push 4
-swap
-pop
- # Another just below
-      #
-add
-push 1
-sub
-push 2
-div
-push 12
-mul
-push 9
-mod
-pall
+push 0
+push 110
+push 0
+push 110
+push 111
+push 116
+push 114
+push 101
+push 98
+push 108
+push 111
+push 72
+pstr

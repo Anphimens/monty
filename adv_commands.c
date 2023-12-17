@@ -101,3 +101,25 @@ void mod(stack_t **stack, unsigned int line_number)
 	free(temp);*/
 	pop(stack, 0);
 }
+/**
+ * pchar - prints char value of number pushed of within ascii table
+ * @stack: head pointer
+ * @line_number: current line number in file
+ * Return: void
+ */
+void pchar(stack_t **stack, unsigned int line_number)
+{
+	stack_t *temp;
+	int num;
+
+	temp = (*stack);
+	 while (temp->next != NULL)
+	 	temp = temp->next;
+	 num = temp->n;
+	 if (num < 0 || num > 127)
+	 {
+		 fprintf(stderr, "L%d: can't pchar, value out of range\n", line_number);
+		 exit(EXIT_FAILURE);
+	 }
+	 printf("%c\n", num);
+}
