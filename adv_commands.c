@@ -112,6 +112,12 @@ void pchar(stack_t **stack, unsigned int line_number)
 	stack_t *temp;
 	int num;
 
+	if ((*stack) == NULL)
+	{
+		fprintf(stderr, "L%d: can't pchar, stack empty\n", line_number);
+		exit(EXIT_FAILURE);
+	}	
+
 	temp = (*stack);
 	 while (temp->next != NULL)
 	 	temp = temp->next;
