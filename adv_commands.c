@@ -53,12 +53,13 @@ void divide(stack_t **stack, unsigned int line_number)
 	}
 	temp_data = (temp->n) / (temp->next->n);
 	temp->next->n = temp_data;
-	(*stack) = temp->next;
+/*	(*stack) = temp->next;
 	if (temp->next != NULL)
 	{
 		temp->next->prev = NULL;
 	}
-	free(temp);
+	free(temp);*/
+	pop (stack, 0);
 }
 /**
  * mod - finds the modulo or reminder of the first two data
@@ -82,12 +83,13 @@ void mod(stack_t **stack, unsigned int line_number)
 	{
 		temp = temp->prev;
 	}
-	temp_data = (temp->n) * (temp->next->n);
+	temp_data = (temp->n) % (temp->next->n);
 	temp->next->n = temp_data;
-	(*stack) = temp->next;
+/*	(*stack) = temp->next;
 	if (temp->next != NULL)
 	{
 		temp->next->prev = NULL;
 	}
-	free(temp);
+	free(temp);*/
+	pop(stack, 0);
 }
