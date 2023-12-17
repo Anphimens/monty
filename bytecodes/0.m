@@ -1,6 +1,5 @@
-push 90
-push 0
-mul
-pall
+push 402
+push 98
+
 mod
 pall
