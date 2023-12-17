@@ -39,20 +39,26 @@ void mul(stack_t **stack, unsigned int line_number)
 void divide(stack_t **stack, unsigned int line_number)
 {
 	int temp_data;
+	div_t output;
 	stack_t *temp;
 
 	if (count_stacks(stack) < 2)
 	{
-		fprintf(stderr, "L%d: can't mul, stack too short\n", line_number);
+		fprintf(stderr, "L%d: can't div, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 	temp = (*stack);
-	while (temp->prev != NULL)
+	while (temp->next != NULL)
+		temp = temp->next;
+	if (temp->prev->n == 0)
 	{
-		temp = temp->prev;
+		fprintf(stderr, "L%d: division by zero\n", line_number);
+		exit(EXIT_FAILURE);
 	}
-	temp_data = (temp->n) / (temp->next->n);
-	temp->next->n = temp_data;
+	
+	output = div((temp->n), (temp->prev->n));
+	temp_data = output.quot;
+	temp->prev->n = temp_data;
 /*	(*stack) = temp->next;
 	if (temp->next != NULL)
 	{
@@ -79,12 +85,10 @@ void mod(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	temp = (*stack);
-	while (temp->prev != NULL)
-	{
-		temp = temp->prev;
-	}
-	temp_data = (temp->n) % (temp->next->n);
-	temp->next->n = temp_data;
+	while (temp->next != NULL)
+		temp = temp->next;
+	temp_data = (temp->n) % (temp->prev->n);
+	temp->prev->n = temp_data;
 /*	(*stack) = temp->next;
 	if (temp->next != NULL)
 	{

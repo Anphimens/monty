@@ -1,12 +1,8 @@
-push 1
-nop
-push 2
-push 3
-pint
-nop
 push 4
-swap
-pop
-add
+push 98
+push 87
+push 90
+div
 pall
-nop
+mod
+pall
