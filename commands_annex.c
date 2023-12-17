@@ -69,11 +69,12 @@ void add(stack_t **stack, unsigned int line_number)
 		temp = temp->next;
 	temp_data = (temp->n) + (temp->prev->n);
 	temp->prev->n = temp_data;
-	(*stack) = temp->prev;
+/*	(*stack) = temp->prev;
 	if (temp->next != NULL)
 		temp->next->prev = temp->prev;
 	temp->prev->next = temp->next;
-	free(temp);
+	free(temp);*/
+	pop(stack, 0);
 }
 /**
  * nop - does virtually nothing
@@ -109,9 +110,10 @@ void sub(stack_t **stack, unsigned int line_number)
 	}
 	temp_data = (temp->prev->n) - (temp->n);
 	temp->prev->n = temp_data;
-	(*stack) = temp->prev;
+/*	(*stack) = temp->prev;
 	if (temp->next != NULL)
 		temp->next->prev = temp->prev;
 	temp->prev->next = temp->next;
-	free(temp);
+	free(temp);*/
+	pop(stack, 0);
 }
