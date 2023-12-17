@@ -16,7 +16,8 @@ instruction_t instruction_list[] = {
 	{"add", add},
 	{"nop", nop},
 	{"div", divide},
-	{"mod", mod}
+	{"mod", mod},
+	{"mul", mul}
 };
 
 int execute_instruction(char *opcode, stack_t **stack,

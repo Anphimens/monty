@@ -17,7 +17,7 @@ void mul(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	temp = (*stack);
-	while (temp->prev != NULL)
+	while (temp->next != NULL)
 		temp = temp->next;
 	temp_data = (temp->prev->n) * (temp->n);
 	temp->prev->n = temp_data;
