@@ -50,13 +50,13 @@ void divide(stack_t **stack, unsigned int line_number)
 	temp = (*stack);
 	while (temp->next != NULL)
 		temp = temp->next;
-	if (temp->prev->n == 0)
+	if ((temp->n) == 0)
 	{
 		fprintf(stderr, "L%d: division by zero\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 	
-	output = div((temp->n), (temp->prev->n));
+	output = div((temp->prev->n), (temp->n));
 	temp_data = output.quot;
 	temp->prev->n = temp_data;
 /*	(*stack) = temp->next;
