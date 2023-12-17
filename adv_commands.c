@@ -18,17 +18,16 @@ void mul(stack_t **stack, unsigned int line_number)
 	}
 	temp = (*stack);
 	while (temp->prev != NULL)
-	{
-		temp = temp->prev;
-	}
-	temp_data = (temp->n) * (temp->next->n);
-	temp->next->n = temp_data;
-	(*stack) = temp->next;
+		temp = temp->next;
+	temp_data = (temp->prev->n) * (temp->n);
+	temp->prev->n = temp_data;
+/*	(*stack) = temp->next;
 	if (temp->next != NULL)
 	{
 		temp->next->prev = NULL;
 	}
-	free(temp);
+*/
+	pop(stack, 0);
 }
 /**
  * divide - multiplied the first two data
