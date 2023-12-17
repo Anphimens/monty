@@ -135,7 +135,7 @@ void pchar(stack_t **stack, unsigned int line_number)
  * @line_number: current line number in file
  * Return: void
  */
-void pstr(stack_t **stack, unsigned int line_number)
+void pstr(stack_t **stack, __attribute__((unused))unsigned int line_number)
 {
 	stack_t *temp;
 	int num;
@@ -154,8 +154,8 @@ void pstr(stack_t **stack, unsigned int line_number)
 		num = temp->n;
 		if (num < 0 || num > 127)
          	{
-		 	fprintf(stderr, "L%d: can't pchar, value out of range\n", line_number);
-		 	exit(EXIT_FAILURE);
+			printf("\n");
+			return;
 		}
 		else if (num == 0)
 		{
