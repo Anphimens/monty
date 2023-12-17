@@ -84,7 +84,7 @@ void pop(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	temp = (*stack);
-	if (temp->prev == NULL)
+	if (temp->next == NULL)
 	{
 		free(temp);
 		(*stack) = NULL;
@@ -92,16 +92,14 @@ void pop(stack_t **stack, unsigned int line_number)
 	}
 
 	previous = NULL;
-	while (temp->prev != NULL)
+	while (temp->next != NULL)
 	{
 		previous = temp;
-		temp = temp->prev;
+		temp = temp->next;
 	}
 
-	if (previous != NULL)
-	{
-		previous->prev = NULL;
-	}
+	previous->next = NULL;
+
 	free(temp);
 }
 /**
@@ -143,8 +141,7 @@ void pint(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	current = (*stack);
-
-	if (current->next != NULL)
+	while (current->next != NULL)
 		current = current->next;
 	printf("%d\n", current->n);
 }

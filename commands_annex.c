@@ -32,19 +32,21 @@ int count_stacks(stack_t **stack)
 void swap(stack_t **stack, unsigned int line_number)
 {
 	int temp;
+	stack_t *current;
 
-	if (count_stacks(stack) < 2)
+	current = (*stack);
+	if ((!current) || (current->next == NULL && current->prev == NULL))
 	{
 		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	while ((*stack)->next != NULL)
+	while (current->next != NULL)
 	{
-		(*stack) = (*stack)->next;
+		current = current->next;
 	}
-	temp = (*stack)->n;
-	(*stack)->n = (*stack)->prev->n;
-	(*stack)->prev->n = temp;
+	temp = current->n;
+	current->n = current->prev->n;
+	current->prev->n = temp;
 }
 /**
  * add - adds the top two elements of the stack
