@@ -34,6 +34,11 @@ int execute_instruction(char *opcode, stack_t **stack,
 			return (EXIT_SUCCESS);
 		}
 	}
+	if (opcode[0] == '#')
+	{
+		nop(stack, line_number);
+		return (EXIT_SUCCESS);
+	}
 	fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opcode);
 	exit(EXIT_FAILURE);
 }
