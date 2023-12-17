@@ -18,8 +18,10 @@ instruction_t instruction_list[] = {
 	{"div", divide},
 	{"mod", mod},
 	{"mul", mul},
-	{"pchar", pchar}
+	{"pchar", pchar},
+	{"pstr", pstr}
 };
+
 
 int execute_instruction(char *opcode, stack_t **stack,
 		unsigned int line_number)

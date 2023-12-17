@@ -129,3 +129,44 @@ void pchar(stack_t **stack, unsigned int line_number)
 	 }
 	 printf("%c\n", num);
 }
+/**
+ * pstr - prints char value of number pushed of within ascii table
+ * @stack: head pointer
+ * @line_number: current line number in file
+ * Return: void
+ */
+void pstr(stack_t **stack, unsigned int line_number)
+{
+	stack_t *temp;
+	int num;
+
+	if ((*stack) == NULL)
+	{
+		printf("\n");
+		return;
+	}
+
+	temp = (*stack);
+	while (temp->next != NULL)
+		temp = temp->next;
+	while(temp != NULL)
+	{
+		num = temp->n;
+		if (num < 0 || num > 127)
+         	{
+		 	fprintf(stderr, "L%d: can't pchar, value out of range\n", line_number);
+		 	exit(EXIT_FAILURE);
+		}
+		else if (num == 0)
+		{
+			printf("\n");
+			return;
+		}
+
+		else
+			printf("%c", num);
+		temp = temp->prev;
+	}
+	printf("\n");
+}
+
